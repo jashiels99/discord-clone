@@ -59,26 +59,38 @@ export default function ServerHeader({ server, role }: ServerHeaderProps) {
                     </DropdownMenuItem>
                 )}
                 {isAdmin && (
-                    <DropdownMenuItem className="px-3 py-2 text-sm cursor-pointer">
+                    <DropdownMenuItem
+                        onClick={() => onOpen('members', { server })}
+                        className="px-3 py-2 text-sm cursor-pointer"
+                    >
                         Manage Members
                         <Users className="w-4 h-4 ml-auto" />
                     </DropdownMenuItem>
                 )}
                 {isModerator && (
-                    <DropdownMenuItem className="px-3 py-2 text-sm cursor-pointer">
+                    <DropdownMenuItem
+                        onClick={() => onOpen('createChannel')}
+                        className="px-3 py-2 text-sm cursor-pointer"
+                    >
                         Create Channel
                         <PlusCircle className="w-4 h-4 ml-auto" />
                     </DropdownMenuItem>
                 )}
                 {isModerator && <DropdownMenuSeparator />}
                 {isAdmin && (
-                    <DropdownMenuItem className="px-3 py-2 text-sm cursor-pointer text-rose-500">
+                    <DropdownMenuItem
+                        onClick={() => onOpen('deleteServer', { server })}
+                        className="px-3 py-2 text-sm cursor-pointer text-rose-500"
+                    >
                         Delete Server
                         <Trash className="w-4 h-4 ml-auto" />
                     </DropdownMenuItem>
                 )}
                 {!isAdmin && (
-                    <DropdownMenuItem className="px-3 py-2 text-sm cursor-pointer text-rose-500">
+                    <DropdownMenuItem
+                        onClick={() => onOpen('leaveServer', { server })}
+                        className="px-3 py-2 text-sm cursor-pointer text-rose-500"
+                    >
                         Leave Server
                         <LogOut className="w-4 h-4 ml-auto" />
                     </DropdownMenuItem>
