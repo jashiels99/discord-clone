@@ -122,7 +122,7 @@ export default function MembersModal() {
                                 </p>
                             </div>
                             {server.profileId !== member.profileId &&
-                                loadingId !== member.profileId && (
+                                loadingId !== member.id && (
                                     <div className="ml-auto">
                                         <DropdownMenu>
                                             <DropdownMenuTrigger>
