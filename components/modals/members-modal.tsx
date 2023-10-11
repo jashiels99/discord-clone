@@ -137,6 +137,7 @@ export default function MembersModal() {
                                                     <DropdownMenuPortal>
                                                         <DropdownMenuSubContent>
                                                             <DropdownMenuItem
+                                                                className="gap-2"
                                                                 onClick={() =>
                                                                     onRoleChange(
                                                                         member.id,
@@ -144,14 +145,15 @@ export default function MembersModal() {
                                                                     )
                                                                 }
                                                             >
-                                                                <Shield className="w-4 h-4 mr-2" />
+                                                                <Shield className="w-4 h-4" />
                                                                 Guest&nbsp;
                                                                 {member.role ===
                                                                     MemberRole.GUEST && (
-                                                                    <Check className="w-4 h-4 ml-auto" />
+                                                                    <Check className="w-4 h-4" />
                                                                 )}
                                                             </DropdownMenuItem>
                                                             <DropdownMenuItem
+                                                                className="gap-2"
                                                                 onClick={() =>
                                                                     onRoleChange(
                                                                         member.id,
@@ -159,11 +161,11 @@ export default function MembersModal() {
                                                                     )
                                                                 }
                                                             >
-                                                                <ShieldCheck className="w-4 h-4 mr-2" />
+                                                                <ShieldCheck className="w-4 h-4" />
                                                                 Moderator&nbsp;
                                                                 {member.role ===
                                                                     MemberRole.MODERATOR && (
-                                                                    <Check className="w-4 h-4 ml-auto" />
+                                                                    <Check className="w-4 h-4" />
                                                                 )}
                                                             </DropdownMenuItem>
                                                         </DropdownMenuSubContent>

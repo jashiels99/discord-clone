@@ -29,7 +29,7 @@ export default async function ServerIdLayout({
     });
 
     if (!server) {
-        redirect('/');
+        return redirect('/');
     }
 
     return (
