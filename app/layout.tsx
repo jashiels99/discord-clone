@@ -2,8 +2,9 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
-import { ThemeProvider } from '@/components/providers/theme-provider';
+import ThemeProvider from '@/components/providers/theme-provider';
 import ModalProvider from '@/components/providers/modal-provider';
+import SocketProvider from '@/components/providers/socket-provider';
 
 const poppins = Poppins({ weight: ['400', '600', '700'], subsets: ['latin'] });
 
@@ -27,8 +28,10 @@ export default function RootLayout({
                         enableSystem={true}
                         storageKey={'discord-clone-theme'}
                     >
-                        <ModalProvider />
-                        {children}
+                        <SocketProvider>
+                            <ModalProvider />
+                            {children}
+                        </SocketProvider>
                     </ThemeProvider>
                 </body>
             </html>
