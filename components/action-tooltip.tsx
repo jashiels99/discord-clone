@@ -1,14 +1,11 @@
 'use client';
 
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from '@/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils';
 
 interface ActionTooltipProps {
     label: string;
+    labelClass?: string;
     children: React.ReactNode;
     side?: 'top' | 'right' | 'bottom' | 'left';
     align?: 'start' | 'center' | 'end';
@@ -16,6 +13,7 @@ interface ActionTooltipProps {
 
 export default function ActionTooltip({
     label,
+    labelClass,
     children,
     side,
     align,
@@ -25,7 +23,7 @@ export default function ActionTooltip({
             <Tooltip delayDuration={50}>
                 <TooltipTrigger asChild>{children}</TooltipTrigger>
                 <TooltipContent side={side} align={align}>
-                    <p className="text-sm font-semibold">{label}</p>
+                    <p className={cn('text-sm font-semibold', labelClass)}>{label}</p>
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>
