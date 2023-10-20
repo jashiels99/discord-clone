@@ -10,12 +10,13 @@ import UserAvatar from '@/components/user-avatar';
 import ActionTooltip from '@/components/action-tooltip';
 import { Edit, FileIcon, ShieldCheck, Trash } from 'lucide-react';
 import Image from 'next/image';
-import { KeyboardEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useModal } from '@/hooks/use-modal-store';
+import { useParams, useRouter } from 'next/navigation';
 
 interface ChatItemProps {
     id: string;
@@ -56,6 +57,16 @@ export default function ChatItem({
 }: ChatItemProps) {
     const [isEditing, setIsEditing] = useState(false);
     const { onOpen } = useModal();
+    const params = useParams();
+    const router = useRouter();
+
+    function onMemberClick() {
+        if (member.id === currentMember.id) {
+            return;
+        }
+
+        router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
+    }
 
     useEffect(() => {
         function handleKeyDown(event: any) {
@@ -111,13 +122,19 @@ export default function ChatItem({
     return (
         <div className="relative flex items-center w-full p-4 transition group hover:bg-black/5">
             <div className="flex items-start w-full gap-x-2 group">
-                <div className="transition cursor-pointer hover:drop-shadow-md">
+                <div
+                    onClick={onMemberClick}
+                    className="transition cursor-pointer hover:drop-shadow-md"
+                >
                     <UserAvatar src={member.profile.imageUrl} />
                 </div>
                 <div className="flex flex-col w-full">
                     <div className="flex items-center gap-x-2">
                         <div className="flex items-center">
-                            <p className="text-sm font-semibold cursor-pointer hover:underline">
+                            <p
+                                onClick={onMemberClick}
+                                className="text-sm font-semibold cursor-pointer hover:underline"
+                            >
                                 {member.profile.name}
                             </p>
                             <ActionTooltip
