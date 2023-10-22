@@ -6,7 +6,7 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { ChannelType } from '@prisma/client';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import {
     Dialog,
@@ -50,7 +50,6 @@ const formSchema = z.object({
 export default function EditChannelModal() {
     const { isOpen, onClose, type, data } = useModal();
     const router = useRouter();
-    const params = useParams();
 
     const isModalOpen = isOpen && type === 'editChannel';
     const { channel, server } = data;
@@ -103,10 +102,7 @@ export default function EditChannelModal() {
                     </DialogTitle>
                 </DialogHeader>
                 <Form {...form}>
-                    <form
-                        onSubmit={form.handleSubmit(onSubmit)}
-                        className="space-y-8"
-                    >
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                         <div className="px-6 space-y-6">
                             <FormField
                                 control={form.control}
@@ -147,17 +143,15 @@ export default function EditChannelModal() {
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                {Object.values(ChannelType).map(
-                                                    (type) => (
-                                                        <SelectItem
-                                                            key={type}
-                                                            value={type}
-                                                            className="capitalize"
-                                                        >
-                                                            {type.toLowerCase()}
-                                                        </SelectItem>
-                                                    )
-                                                )}
+                                                {Object.values(ChannelType).map((type) => (
+                                                    <SelectItem
+                                                        key={type}
+                                                        value={type}
+                                                        className="capitalize"
+                                                    >
+                                                        {type.toLowerCase()}
+                                                    </SelectItem>
+                                                ))}
                                             </SelectContent>
                                         </Select>
                                         <FormMessage />
